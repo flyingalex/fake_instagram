@@ -80,14 +80,51 @@ class HomeVC: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        // 获取headerview对象
         let header = self.collectionView?.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header", for: indexPath) as! HeaderView
+        
+        // header相关数据
         header.fullnameLbl.text = (AVUser.current()?.object(forKey: "fullname") as? String)?.uppercased()
         header.webTxt.text = AVUser.current()?.object(forKey: "web") as? String
         header.webTxt.sizeToFit()
         header.bioLbl.text = AVUser.current()?.object(forKey: "bio") as? String
         header.bioLbl.sizeToFit()
         let avaQuery = AVUser.current()?.object(forKey: "ava") as! AVFile
-        avaQuery.getDataInBackground { (data: Data?, error: Error?) in header.avaImg.image = UIImage(data: data!) }
+        avaQuery.getDataInBackground { (data: Data?, error: Error?) in
+            if data == nil {
+                print(error?.localizedDescription)
+            } else {
+                header.avaImg.image = UIImage(data: data!)
+            }
+        }
+        
+        // 帖子总数
+        let currentUser: AVUser = (AVUser.current())!
+        let postsQuery = AVQuery(className: "Posts")
+        postsQuery.whereKey("username", equalTo: currentUser.username)
+        postsQuery.countObjectsInBackground( { (count: Int, error: Error?) in
+            if error == nil {
+                header.posts.text = String(count)
+            }
+        })
+        
+        // 关注者总数
+        let followersQuery = AVQuery(className: "_Follower")
+        followersQuery.whereKey("user", equalTo: currentUser)
+        followersQuery.countObjectsInBackground{ (count: Int, error: Error?) in
+            if error == nil {
+                header.followers.text = String(count)
+            }
+        }
+        
+        // 关注数
+        let followeesQuery = AVQuery(className: "_Followee")
+        followeesQuery.whereKey("user", equalTo: currentUser)
+        followeesQuery.countObjectsInBackground{ (count: Int, error: Error?) in
+            if error == nil {
+                header.followings.text = String(count)
+            }
+        }
         return header
     }
     

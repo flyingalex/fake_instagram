@@ -53,6 +53,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let myTabBar = storyboard.instantiateViewController(withIdentifier: "TabBar") as! UITabBarController
             window?.rootViewController = myTabBar
+//            AVUser.current()?.follow("59dd5d4fa22b9d00619ad86c") { (success: Bool, error: Error?) in
+//                if success {
+//                    print("为当前用户添加关注者成功!")
+//                } else {
+//                    print("为当前用户添加关注者失败!")
+//                }
+//            }
         }
     }
 }
