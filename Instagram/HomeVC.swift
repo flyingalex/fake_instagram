@@ -73,10 +73,7 @@ class HomeVC: UICollectionViewController {
     
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        print("puuidArray.count")
-        print(puuidArray.count)
-        return puuidArray.count
+        return puuidArray.count * 20
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -125,13 +122,30 @@ class HomeVC: UICollectionViewController {
                 header.followings.text = String(count)
             }
         }
+        
+        //实现单击手势
+        //单击帖子
+        let postsTap = UITapGestureRecognizer(target: self, action: #selector(postsTap(_:)))
+        postsTap.numberOfTapsRequired = 1
+        header.posts.isUserInteractionEnabled = true
+        header.posts.addGestureRecognizer(postsTap)
+        //单击关注者数
+        let followersTap = UITapGestureRecognizer(target: self, action: #selector(followersTap(_:)))
+        followersTap.numberOfTapsRequired = 1
+        header.followers.isUserInteractionEnabled = true
+        header.followers.addGestureRecognizer(followersTap)
+        //单击关注数
+        let followingsTap = UITapGestureRecognizer(target: self, action: #selector(followingsTap(_:)))
+        followingsTap.numberOfTapsRequired = 1
+        header.followings.isUserInteractionEnabled = true
+        header.followings.addGestureRecognizer(followingsTap)
         return header
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // 从集合视图的可复用队列中获取单元格对象
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! PictureCell
-        picArray[indexPath.row].getDataInBackground({ (data: Data?, error: Error?) in
+        picArray[0].getDataInBackground({ (data: Data?, error: Error?) in
             if error == nil {
                 cell.picImg.image = UIImage(data: data!)
             } else {
@@ -141,6 +155,31 @@ class HomeVC: UICollectionViewController {
         return cell
     }
 
+    @objc func postsTap(_ recognizer: UITapGestureRecognizer) {
+        if !picArray.isEmpty {
+            print("单击帖子数")
+            let index = IndexPath(row: 0, section: 0)
+            self.collectionView?.scrollToItem(at: index, at: UICollectionViewScrollPosition.top, animated: true)
+        }
+    }
+    
+    @objc func followersTap(_ recognizer: UITapGestureRecognizer) {
+        // 从故事面板中载入followersVC视图
+        let followers = self.storyboard?.instantiateViewController(withIdentifier: "FollowersVC") as! FollowersVC
+        followers.user = (AVUser.current()?.username)!
+        followers.show = "关注者"
+        self.navigationController?.pushViewController(followers, animated: true)
+        
+    }
+    
+    @objc func followingsTap(_ recognizer: UITapGestureRecognizer) {
+        // 从故事面板中载入followersVC视图
+        let followings = self.storyboard?.instantiateViewController(withIdentifier: "FollowersVC") as! FollowersVC
+        followings.user = (AVUser.current()?.username)!
+        followings.show = "关 注"
+        self.navigationController?.pushViewController(followings, animated: true)
+    }
+    
     // MARK: UICollectionViewDelegate
 
     /*

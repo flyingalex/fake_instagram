@@ -19,6 +19,8 @@
 		1996E71E1F8C3E8500B454BF /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1996E71D1F8C3E8500B454BF /* HomeVC.swift */; };
 		1996E7201F8C3EB600B454BF /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1996E71F1F8C3EB600B454BF /* HeaderView.swift */; };
 		1996E7221F8C41B100B454BF /* PictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1996E7211F8C41B100B454BF /* PictureCell.swift */; };
+		1996E7241F8E66FF00B454BF /* FollowersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1996E7231F8E66FF00B454BF /* FollowersVC.swift */; };
+		1996E7261F8E6CDF00B454BF /* FollowersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1996E7251F8E6CDF00B454BF /* FollowersCell.swift */; };
 		95C1C8B8DB4D97ABFFD7D189 /* Pods_Instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D25E371F10710C4601E38CC /* Pods_Instagram.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +40,8 @@
 		1996E71D1F8C3E8500B454BF /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		1996E71F1F8C3EB600B454BF /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		1996E7211F8C41B100B454BF /* PictureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCell.swift; sourceTree = "<group>"; };
+		1996E7231F8E66FF00B454BF /* FollowersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersVC.swift; sourceTree = "<group>"; };
+		1996E7251F8E6CDF00B454BF /* FollowersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersCell.swift; sourceTree = "<group>"; };
 		3D25E371F10710C4601E38CC /* Pods_Instagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77AA33A99BBA4D7217D037CF /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
 		F1B13C66A7B44793EC8411D5 /* Pods-Instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram/Pods-Instagram.debug.xcconfig"; sourceTree = "<group>"; };
@@ -90,6 +94,8 @@
 				1996E71D1F8C3E8500B454BF /* HomeVC.swift */,
 				1996E71F1F8C3EB600B454BF /* HeaderView.swift */,
 				1996E7211F8C41B100B454BF /* PictureCell.swift */,
+				1996E7231F8E66FF00B454BF /* FollowersVC.swift */,
+				1996E7251F8E6CDF00B454BF /* FollowersCell.swift */,
 			);
 			path = Instagram;
 			sourceTree = "<group>";
@@ -249,9 +255,11 @@
 			files = (
 				197B165E1F89D3D50099240C /* AppDelegate.swift in Sources */,
 				1996E7201F8C3EB600B454BF /* HeaderView.swift in Sources */,
+				1996E7241F8E66FF00B454BF /* FollowersVC.swift in Sources */,
 				1996E71E1F8C3E8500B454BF /* HomeVC.swift in Sources */,
 				1928E31A1F89D9D8004D8368 /* SignUpVC.swift in Sources */,
 				1928E3181F89D9A4004D8368 /* SignInVC.swift in Sources */,
+				1996E7261F8E6CDF00B454BF /* FollowersCell.swift in Sources */,
 				1996E7221F8C41B100B454BF /* PictureCell.swift in Sources */,
 				1928E31C1F89D9F4004D8368 /* ResetPasswordVC.swift in Sources */,
 			);
