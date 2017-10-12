@@ -73,7 +73,7 @@ class HomeVC: UICollectionViewController {
     
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return puuidArray.count * 20
+        return puuidArray.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -145,7 +145,7 @@ class HomeVC: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // 从集合视图的可复用队列中获取单元格对象
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! PictureCell
-        picArray[0].getDataInBackground({ (data: Data?, error: Error?) in
+        picArray[indexPath.row].getDataInBackground({ (data: Data?, error: Error?) in
             if error == nil {
                 cell.picImg.image = UIImage(data: data!)
             } else {
