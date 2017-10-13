@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVOSCloud
 
 class HeaderView: UICollectionReusableView {
     @IBOutlet weak var avaImg: UIImageView! // 用户头像
@@ -20,4 +21,32 @@ class HeaderView: UICollectionReusableView {
     @IBOutlet weak var followersTitle: UILabel! // 关注者的Label
     @IBOutlet weak var followingsTitle: UILabel! // 关注的Label
     @IBOutlet weak var button: UIButton! // 编辑个人主页按钮
+
+    @IBAction func followBtn_clicked(_ sender: Any) {
+        let title = button.title(for: .normal)
+        // 获取当前访客对象
+        print("获取当前访客对象")
+        let user = guestArray.last
+        if title == "关 注" {
+            guard let user = user else { return }
+            AVUser.current()?.follow(user.objectId!, andCallback: { (success: Bool, error: Error?) in
+                if success {
+                    self.button.setTitle("√已关注", for: .normal)
+                    self.button.backgroundColor = .green
+                } else {
+                    print(error?.localizedDescription)
+                }
+            })
+        } else {
+            guard let user = user else { return }
+            AVUser.current()?.unfollow(user.objectId!, andCallback: { (success: Bool, error: Error?) in
+                if success {
+                    self.button.setTitle("关 注", for: .normal)
+                    self.button.backgroundColor = .lightGray
+                } else {
+                    print(error?.localizedDescription)
+                }
+            })
+        }
+    }
 }

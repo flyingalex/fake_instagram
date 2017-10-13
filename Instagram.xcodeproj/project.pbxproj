@@ -10,6 +10,7 @@
 		1928E3181F89D9A4004D8368 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1928E3171F89D9A4004D8368 /* SignInVC.swift */; };
 		1928E31A1F89D9D8004D8368 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1928E3191F89D9D8004D8368 /* SignUpVC.swift */; };
 		1928E31C1F89D9F4004D8368 /* ResetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1928E31B1F89D9F4004D8368 /* ResetPasswordVC.swift */; };
+		1935F9761F8FC4060047AAAD /* GuestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1935F9751F8FC4060047AAAD /* GuestVC.swift */; };
 		197B165E1F89D3D50099240C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197B165D1F89D3D50099240C /* AppDelegate.swift */; };
 		197B16631F89D3D50099240C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 197B16611F89D3D50099240C /* Main.storyboard */; };
 		197B16651F89D3D50099240C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 197B16641F89D3D50099240C /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		1928E3171F89D9A4004D8368 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		1928E3191F89D9D8004D8368 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		1928E31B1F89D9F4004D8368 /* ResetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
+		1935F9751F8FC4060047AAAD /* GuestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestVC.swift; sourceTree = "<group>"; };
 		197B165A1F89D3D50099240C /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		197B165D1F89D3D50099240C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		197B16621F89D3D50099240C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				1996E7211F8C41B100B454BF /* PictureCell.swift */,
 				1996E7231F8E66FF00B454BF /* FollowersVC.swift */,
 				1996E7251F8E6CDF00B454BF /* FollowersCell.swift */,
+				1935F9751F8FC4060047AAAD /* GuestVC.swift */,
 			);
 			path = Instagram;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				1996E7261F8E6CDF00B454BF /* FollowersCell.swift in Sources */,
 				1996E7221F8C41B100B454BF /* PictureCell.swift in Sources */,
 				1928E31C1F89D9F4004D8368 /* ResetPasswordVC.swift in Sources */,
+				1935F9761F8FC4060047AAAD /* GuestVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
