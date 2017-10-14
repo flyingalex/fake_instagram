@@ -9,7 +9,7 @@
 import UIKit
 import AVOSCloud
 
-class HomeVC: UICollectionViewController {
+class HomeVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     // 刷新控件
     var refresher: UIRefreshControl!
     // 每页载入帖子的数量
@@ -37,6 +37,18 @@ class HomeVC: UICollectionViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func logout(_ sender: Any) {
+        AVUser.logOut()
+        // 从userdefault中移除用户登录
+        UserDefaults.standard.removeObject(forKey: "username")
+        UserDefaults.standard.synchronize()
+        
+        // 设置应用程序的rootViewController为登录控制器
+        let signIn = self.storyboard?.instantiateViewController(withIdentifier: "SignInVC")
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = signIn
     }
     
     @objc func refresh() {
@@ -136,6 +148,7 @@ class HomeVC: UICollectionViewController {
         return header
     }
     
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // 从集合视图的可复用队列中获取单元格对象
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! PictureCell
@@ -149,6 +162,12 @@ class HomeVC: UICollectionViewController {
         return cell
     }
 
+    // 设置单元格大小
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = CGSize( width: self.view.frame.width / 3, height: self.view.frame.width / 3)
+        return size
+    }
+    
     @objc func postsTap(_ recognizer: UITapGestureRecognizer) {
         if !picArray.isEmpty {
             print("单击帖子数")

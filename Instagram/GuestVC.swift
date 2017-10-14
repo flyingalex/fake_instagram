@@ -10,14 +10,14 @@ import UIKit
 import AVOSCloud
 
 var guestArray = [AVUser]()
-class GuestVC: UICollectionViewController {
+class GuestVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     // 从云端获取数据并存储到数组
     var puuidArray = [String]()
     var picArray = [AVFile]()
     // 界面对象
     var refresher: UIRefreshControl!
-    var page: Int = 12
-
+    var page: Int = 12    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -14,7 +14,7 @@
         <!--Sign InVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="SignInVC" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInVC" id="BYZ-38-t0r" customClass="SignInVC" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -448,7 +448,13 @@
                             <outlet property="delegate" destination="ocd-Wn-mMX" id="uRQ-M6-jlT"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="Bbi-jU-qla"/>
+                    <navigationItem key="navigationItem" id="Bbi-jU-qla">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="6x2-Jx-G84">
+                            <connections>
+                                <action selector="logout:" destination="ocd-Wn-mMX" id="Z3S-qE-OzT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5b2-lv-xmp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

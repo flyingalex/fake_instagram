@@ -117,4 +117,7 @@ class FollowersVC: UITableViewController {
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.view.frame.width / 4
+    }
 }

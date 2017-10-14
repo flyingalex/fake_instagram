@@ -44,10 +44,11 @@ class FollowersCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // 将头像制作成圆形
-        avaImg.layer.cornerRadius = avaImg.frame.width / 2
-        avaImg.clipsToBounds = true
-
+        // 布局设置
+        let width = UIScreen.main.bounds.width
+        avaImg.frame = CGRect(x: 10, y: 10, width: width / 5.3, height: width / 5.3)
+        usernameLbl.frame = CGRect(x: avaImg.frame.width + 20, y: 30, width: width / 3.2, height: 30)
+        followBtn.frame = CGRect(x: width - width / 3.5 - 20, y: 30, width: width / 3.5, height: 30)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
