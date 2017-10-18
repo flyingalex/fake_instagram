@@ -31,6 +31,10 @@ class HomeVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
         refresher.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
         collectionView?.addSubview(refresher)
         
+        // 从EditVC类接收Notification
+        NotificationCenter.default.addObserver(self, selector: #selector(reload(notification:)), name: Notification.Name(rawValue: "reload"), object: nil)
+        
+        
         loadPosts()
     }
 
@@ -54,6 +58,10 @@ class HomeVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     @objc func refresh() {
         collectionView?.reloadData()
         refresher.endRefreshing()
+    }
+    
+    @objc func reload(notification: Notification) {
+        collectionView?.reloadData()
     }
     
     func loadPosts() {
