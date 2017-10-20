@@ -233,7 +233,9 @@ class EditVC: UIViewController,
     func information() {
         let ava = AVUser.current()?.object(forKey: "ava") as! AVFile
         ava.getDataInBackground{ (data: Data?, error: Error?) in
-            self.avaImg.image = UIImage(data: data!)
+            if data != nil {
+                self.avaImg.image = UIImage(data: data!)
+            }
         }
         
         // 接收个人用户的文本信息

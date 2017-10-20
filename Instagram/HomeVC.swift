@@ -34,6 +34,8 @@ class HomeVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
         // 从EditVC类接收Notification
         NotificationCenter.default.addObserver(self, selector: #selector(reload(notification:)), name: Notification.Name(rawValue: "reload"), object: nil)
         
+        // 从UploadVC类接收Notification
+        NotificationCenter.default.addObserver(self, selector: #selector(uploaded(notification:)), name: Notification.Name(rawValue: "uploaded"), object: nil)
         
         loadPosts()
     }
@@ -62,6 +64,11 @@ class HomeVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     @objc func reload(notification: Notification) {
         collectionView?.reloadData()
+    }
+    
+    // 在接收到uploaded通知后重新载入posts
+    @objc func uploaded(notification: Notification) {
+        loadPosts()
     }
     
     func loadPosts() {
