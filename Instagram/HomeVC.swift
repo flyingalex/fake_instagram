@@ -40,6 +40,39 @@ class HomeVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
         loadPosts()
     }
 
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y >= scrollView.contentSize.height - self.view.frame.height {
+            self.loadMore()
+        }
+    }
+    
+    func loadMore() {
+
+        if page <= picArray.count {
+            page = page + 12
+            let query = AVQuery(className: "Posts")
+            query.whereKey("username", equalTo: AVUser.current()?.username)
+            query.limit = page
+            query.findObjectsInBackground({ (objects:[Any]?, error: Error?) in
+                // 查询成功
+                if error == nil {
+                    // 清空两个数组
+                    self.puuidArray.removeAll(keepingCapacity: false)
+                    self.picArray.removeAll(keepingCapacity: false)
+                    for object in objects! {
+                        // 将查询到的数据添加到数组中
+                        self.puuidArray.append((object as AnyObject).value(forKey: "puuid") as! String)
+                        self.picArray.append((object as AnyObject).value(forKey: "pic") as! AVFile)
+                    }
+                    print("loaded + \(self.page)")
+                    self.collectionView?.reloadData()
+                } else {
+                    print(error?.localizedDescription)
+                }
+            })
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
