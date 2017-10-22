@@ -18,6 +18,8 @@
 		197B16651F89D3D50099240C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 197B16641F89D3D50099240C /* Assets.xcassets */; };
 		197B16681F89D3D50099240C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 197B16661F89D3D50099240C /* LaunchScreen.storyboard */; };
 		197B16701F89D3F50099240C /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 197B166F1F89D3F50099240C /* Podfile */; };
+		1986A48F1F9C20590026D4D1 /* PostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1986A48E1F9C20590026D4D1 /* PostVC.swift */; };
+		1986A4911F9C22D60026D4D1 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1986A4901F9C22D60026D4D1 /* PostCell.swift */; };
 		1996E71A1F8BC4B300B454BF /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1996E7191F8BC2FC00B454BF /* Pacifico-Regular.ttf */; };
 		1996E71E1F8C3E8500B454BF /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1996E71D1F8C3E8500B454BF /* HomeVC.swift */; };
 		1996E7201F8C3EB600B454BF /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1996E71F1F8C3EB600B454BF /* HeaderView.swift */; };
@@ -42,6 +44,8 @@
 		197B16691F89D3D50099240C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		197B166F1F89D3F50099240C /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		197B16711F89D4720099240C /* Instagram-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Instagram-Bridging-Header.h"; sourceTree = "<group>"; };
+		1986A48E1F9C20590026D4D1 /* PostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVC.swift; sourceTree = "<group>"; };
+		1986A4901F9C22D60026D4D1 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		1996E7191F8BC2FC00B454BF /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pacifico-Regular.ttf"; sourceTree = "<group>"; };
 		1996E71D1F8C3E8500B454BF /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		1996E71F1F8C3EB600B454BF /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -105,6 +109,8 @@
 				1935F9751F8FC4060047AAAD /* GuestVC.swift */,
 				191447221F93250900EA8D3C /* EditVC.swift */,
 				192D45BF1F98DC9F00C1F230 /* UploadVC.swift */,
+				1986A48E1F9C20590026D4D1 /* PostVC.swift */,
+				1986A4901F9C22D60026D4D1 /* PostCell.swift */,
 			);
 			path = Instagram;
 			sourceTree = "<group>";
@@ -262,12 +268,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1986A48F1F9C20590026D4D1 /* PostVC.swift in Sources */,
 				191447231F93250900EA8D3C /* EditVC.swift in Sources */,
 				197B165E1F89D3D50099240C /* AppDelegate.swift in Sources */,
 				1996E7201F8C3EB600B454BF /* HeaderView.swift in Sources */,
 				1996E7241F8E66FF00B454BF /* FollowersVC.swift in Sources */,
 				1996E71E1F8C3E8500B454BF /* HomeVC.swift in Sources */,
 				1928E31A1F89D9D8004D8368 /* SignUpVC.swift in Sources */,
+				1986A4911F9C22D60026D4D1 /* PostCell.swift in Sources */,
 				1928E3181F89D9A4004D8368 /* SignInVC.swift in Sources */,
 				192D45C01F98DC9F00C1F230 /* UploadVC.swift in Sources */,
 				1996E7261F8E6CDF00B454BF /* FollowersCell.swift in Sources */,
