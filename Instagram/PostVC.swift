@@ -33,8 +33,8 @@ class PostVC: UITableViewController {
         self.view.addGestureRecognizer(backSwipe)
         
         // 动态单元格高度设置
-//        tableView.rowHeight = UITableViewAutomaticDimension
-//        tableView.estimatedRowHeight = 550
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 550
         
         let postQuery = AVQuery(className: "Posts")
         postQuery.whereKey("puuid", equalTo: postuuid.last)
