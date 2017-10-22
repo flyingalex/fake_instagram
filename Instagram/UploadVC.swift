@@ -71,7 +71,10 @@ class UploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         // 让UI控件回到初始状态
         picImg.image = UIImage(named: "pbg.jpg")
         titleTxt.text = ""
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         alignment()
     }
 
@@ -100,10 +103,10 @@ class UploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     // 放大或缩小照片
     @objc func zoomImg() {
         // 放大后Image View 的位置
-        let zoomed = CGRect(x: 0, y: self.view.center.y, width: self.view.center.x, height: self.view.frame.width)
+        let zoomed = CGRect(x: 0, y: self.view.center.y - self.view.center.x - self.navigationController!.navigationBar.frame.height * 1.5, width: self.view.frame.width, height: self.view.frame.width)
         
         //imgae view 还原到原始的位置
-        let unzoomed = CGRect(x: 15, y: self.navigationController!.navigationBar.frame.height + 35, width: self.view.frame.width / 4.5, height: self.view.frame.width / 4.5)
+        let unzoomed = CGRect(x: 15, y: 15, width: self.view.frame.width / 4.5, height: self.view.frame.width / 4.5)
         
         // 如果img是初始大小
         if picImg.frame == unzoomed {
@@ -112,6 +115,7 @@ class UploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 self.view.backgroundColor = .black
                 self.titleTxt.alpha = 0
                 self.publishBtn.alpha = 0
+                self.removeBtn.alpha = 0
             })
         // 如果是放大后的状态
         }else {
@@ -120,6 +124,7 @@ class UploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 self.view.backgroundColor = .white
                 self.titleTxt.alpha = 1
                 self.publishBtn.alpha = 1
+                self.removeBtn.alpha = 1
             })
         }
     }
@@ -135,12 +140,13 @@ class UploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     // 界面元素对齐
     func alignment() {
         let width = self.view.frame.width
+        let height = self.view.frame.height
         
-        picImg.frame = CGRect(x: 15, y: self.navigationController!.navigationBar.frame.height + 35, width: width / 4.5, height: width / 4.5)
+        picImg.frame = CGRect(x: 15, y: 15, width: width / 4.5, height: width / 4.5)
         
         titleTxt.frame = CGRect(x: picImg.frame.width + 25, y: picImg.frame.origin.y, width: width - titleTxt.frame.origin.x - 10, height: picImg.frame.height)
         
-        publishBtn.frame = CGRect(x: 0, y: self.tabBarController!.tabBar.frame.origin.y - width / 8, width: width, height: width / 8)
+        publishBtn.frame = CGRect(x: 0, y: height - width / 8, width: width, height: width / 8)
         
         removeBtn.frame = CGRect(x: picImg.frame.origin.x, y: picImg.frame.origin.y + picImg.frame.height, width: picImg.frame.width, height: 30)
     }

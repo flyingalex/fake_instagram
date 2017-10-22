@@ -12,7 +12,7 @@ import AVOSCloud
 var guestArray = [AVUser]()
 class GuestVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     // 从云端获取数据并存储到数组
-    var puuidArray = [String]()
+    var uuidArray = [String]()
     var picArray = [AVFile]()
     // 界面对象
     var refresher: UIRefreshControl!
@@ -63,11 +63,11 @@ class GuestVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
                 // 查询成功
                 if error == nil {
                     // 清空两个数组
-                    self.puuidArray.removeAll(keepingCapacity: false)
+                    self.uuidArray.removeAll(keepingCapacity: false)
                     self.picArray.removeAll(keepingCapacity: false)
                     for object in objects! {
                         // 将查询到的数据添加到数组中
-                        self.puuidArray.append((object as AnyObject).value(forKey: "puuid") as! String)
+                        self.uuidArray.append((object as AnyObject).value(forKey: "puuid") as! String)
                         self.picArray.append((object as AnyObject).value(forKey: "pic") as! AVFile)
                     }
                     print("loaded + \(self.page)")
@@ -88,10 +88,10 @@ class GuestVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
             // 查询成功
             if error == nil {
                 // 清空两个数组
-                self.puuidArray.removeAll(keepingCapacity: false)
+                self.uuidArray.removeAll(keepingCapacity: false)
                 self.picArray.removeAll(keepingCapacity: false)
                 for object in objects! {
-                    self.puuidArray.append((object as AnyObject).value(forKey: "puuid") as! String)
+                    self.uuidArray.append((object as AnyObject).value(forKey: "puuid") as! String)
                     self.picArray.append((object as AnyObject).value(forKey: "pic") as! AVFile)
                 }
                 self.refresh()
@@ -210,6 +210,17 @@ class GuestVC: UICollectionViewController, UICollectionViewDelegateFlowLayout {
         header.followings.addGestureRecognizer(followingsTap)
         return header
     }
+    
+    // go post
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // 发送post uuid 到 postuuid数组中
+        postuuid.append(uuidArray[indexPath.row])
+        
+        // 导航到postVC控制器
+        let postVC = self.storyboard?.instantiateViewController(withIdentifier: "PostVC") as! PostVC
+        self.navigationController?.pushViewController(postVC, animated: true)
+    }
+    
     
     @objc func postsTap(_ recognizer: UITapGestureRecognizer) {
         if !picArray.isEmpty {
