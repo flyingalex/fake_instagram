@@ -19,6 +19,24 @@ class PostVC: UITableViewController {
     var puuidArray = [String]()
     var titleArray = [String]()
     
+    @IBAction func usernameBtn_clicked(_ sender: AnyObject) {
+        // 按钮的 index
+        let i = sender.layer.value(forKey: "index") as! IndexPath
+        
+        // 通过 i 获取到用户所点击的单元格
+        let cell = tableView.cellForRow(at: i) as! PostCell
+        
+        // 如果当前用户点击的是自己的username，则调用HomeVC，否则是GuestVC
+        if cell.usernameBtn.titleLabel?.text == AVUser.current()?.username {
+            let home = self.storyboard?.instantiateViewController(withIdentifier: "HomeVC") as! HomeVC
+            self.navigationController?.pushViewController(home, animated: true)
+        } else {
+            let guest = self.storyboard?.instantiateViewController(withIdentifier: "GuestVC") as! GuestVC
+            self.navigationController?.pushViewController(guest, animated: true)
+        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // 定义返回的按钮
@@ -57,6 +75,8 @@ class PostVC: UITableViewController {
             }
             self.tableView.reloadData()
         })
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: Notification.Name(rawValue: "liked"), object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -114,7 +134,37 @@ class PostVC: UITableViewController {
             cell.dateLbl.text = "\(difference.weekOfMonth!)周."
         }
 
+        // 根据用户是否喜爱维护likeBtn按钮
+        let didLike = AVQuery(className: "Likes")
+        didLike.whereKey("by", equalTo: AVUser.current()?.username)
+        didLike.whereKey("to", equalTo: cell.puuidLbl.text)
+        didLike.countObjectsInBackground({ (count: Int, error: Error?) in
+            if count == 0 {
+                cell.likeBtn.setTitle("unlike", for: .normal)
+                cell.likeBtn.setBackgroundImage(UIImage(named: "unlike.png"), for: .normal)
+            } else {
+                cell.likeBtn.setTitle("like", for: .normal)
+                cell.likeBtn.setBackgroundImage(UIImage(named: "like.png"), for: .normal)
+            }
+        })
+        
+   
+        // 计算帖子的喜爱总数
+        let countLikes = AVQuery(className: "Likes")
+        countLikes.whereKey("to", equalTo: cell.puuidLbl.text)
+        countLikes.countObjectsInBackground({ (count: Int, error: Error?) in
+            cell.likeLbl.text = "\(count)"
+        })
+        
+        
+        // 将indexPath赋值给usernameBtn的layer属性的自定义变量
+        cell.usernameBtn.layer.setValue(indexPath, forKey: "index")
+        
         return cell
+    }
+    
+    @objc func refresh() {
+        self.tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

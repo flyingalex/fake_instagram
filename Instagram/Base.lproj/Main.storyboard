@@ -898,6 +898,9 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <state key="normal" title="usernameBtn"/>
+                                            <connections>
+                                                <action selector="usernameBtn_clicked:" destination="N7R-cF-5mu" eventType="touchUpInside" id="PPN-Z6-1Iw"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGX-Zq-et5">
                                             <rect key="frame" x="257" y="12" width="72" height="30"/>
@@ -909,7 +912,10 @@
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YXJ-qP-M86">
                                             <rect key="frame" x="10" y="415" width="30" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" image="unlike"/>
+                                            <state key="normal" backgroundImage="unlike"/>
+                                            <connections>
+                                                <action selector="likeBtn_clicked:" destination="NrF-Fv-eEg" eventType="touchUpInside" id="4pP-pU-jnE"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zdi-ZM-F9l">
                                             <rect key="frame" x="173" y="415" width="30" height="30"/>
