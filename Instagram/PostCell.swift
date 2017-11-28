@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVOSCloud
 
 class PostCell: UITableViewCell {
     @IBOutlet weak var avaImg: UIImageView!

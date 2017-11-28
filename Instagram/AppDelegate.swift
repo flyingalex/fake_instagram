@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 如果 想 跟踪 统计 应用 的 打开 情况， 可以 添加 下面 一行 代码
         AVAnalytics.trackAppOpened(launchOptions: launchOptions)
         login()
+        
+        window?.backgroundColor = .white
         return true
     }
 

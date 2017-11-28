@@ -1,23 +1,23 @@
 PODS:
-  - AVOSCloud (7.3.0)
-  - AVOSCloudCrashReporting (7.3.0):
-    - AVOSCloud (= 7.3.0)
-    - AVOSCloudCrashReporting/_ARC (= 7.3.0)
-    - AVOSCloudCrashReporting/_NOARC (= 7.3.0)
-  - AVOSCloudCrashReporting/_ARC (7.3.0):
-    - AVOSCloud (= 7.3.0)
-    - AVOSCloudCrashReporting/_NOARC (= 7.3.0)
-  - AVOSCloudCrashReporting/_NOARC (7.3.0):
-    - AVOSCloud (= 7.3.0)
-  - AVOSCloudIM (7.3.0):
-    - AVOSCloud (= 7.3.0)
-    - AVOSCloudIM/_ARC (= 7.3.0)
-    - AVOSCloudIM/_NOARC (= 7.3.0)
-  - AVOSCloudIM/_ARC (7.3.0):
-    - AVOSCloud (= 7.3.0)
-    - AVOSCloudIM/_NOARC (= 7.3.0)
-  - AVOSCloudIM/_NOARC (7.3.0):
-    - AVOSCloud (= 7.3.0)
+  - AVOSCloud (7.3.2)
+  - AVOSCloudCrashReporting (7.3.2):
+    - AVOSCloud (= 7.3.2)
+    - AVOSCloudCrashReporting/_ARC (= 7.3.2)
+    - AVOSCloudCrashReporting/_NOARC (= 7.3.2)
+  - AVOSCloudCrashReporting/_ARC (7.3.2):
+    - AVOSCloud (= 7.3.2)
+    - AVOSCloudCrashReporting/_NOARC (= 7.3.2)
+  - AVOSCloudCrashReporting/_NOARC (7.3.2):
+    - AVOSCloud (= 7.3.2)
+  - AVOSCloudIM (7.3.2):
+    - AVOSCloud (= 7.3.2)
+    - AVOSCloudIM/_ARC (= 7.3.2)
+    - AVOSCloudIM/_NOARC (= 7.3.2)
+  - AVOSCloudIM/_ARC (7.3.2):
+    - AVOSCloud (= 7.3.2)
+    - AVOSCloudIM/_NOARC (= 7.3.2)
+  - AVOSCloudIM/_NOARC (7.3.2):
+    - AVOSCloud (= 7.3.2)
 
 DEPENDENCIES:
   - AVOSCloud
@@ -25,9 +25,9 @@ DEPENDENCIES:
   - AVOSCloudIM
 
 SPEC CHECKSUMS:
-  AVOSCloud: f7a87203a36d64c4174012eebf7564bed646fdae
-  AVOSCloudCrashReporting: 29301b0f267dbdb0c703d1c74e7d1d700d8d5bf8
-  AVOSCloudIM: 2583bbf0a412079f234b0b05cf0a0e98620b3abd
+  AVOSCloud: 8a18125408bac1fc73c19ceb897db4ec4e0e6044
+  AVOSCloudCrashReporting: 12f4677508eac413f6c80f53bc7172b4210de1a8
+  AVOSCloudIM: dc24560259042bb84dd318a31b71ca858fccb6fe
 
 PODFILE CHECKSUM: 8dfdc3bbf034e16d38db09b263e3447f4b61822c
 

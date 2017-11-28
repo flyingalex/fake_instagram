@@ -37,6 +37,19 @@ class PostVC: UITableViewController {
         
     }
     
+    @IBAction func commentBtn_clicked(_ sender: AnyObject) {
+        let i = sender.layer.value(forKey: "index") as! IndexPath
+        let cell = tableView.cellForRow(at: i) as! PostCell
+//         发送相关数据到全局变量
+        commentuuid.append(cell.puuidLbl.text!)
+        commentowner.append(cell.usernameBtn.titleLabel!.text!)
+
+        // 需要在故事板中查看Storyboard ID是否设置
+        let comment = self.storyboard?.instantiateViewController(withIdentifier: "CommentVC") as! CommentVC
+        self.navigationController?.pushViewController(comment, animated: true)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // 定义返回的按钮
@@ -157,8 +170,9 @@ class PostVC: UITableViewController {
         })
         
         
-        // 将indexPath赋值给usernameBtn的layer属性的自定义变量
+        // 将indexPath赋值给usernameBtn, commentBtn的layer属性的自定义变量
         cell.usernameBtn.layer.setValue(indexPath, forKey: "index")
+        cell.commentBtn.layer.setValue(indexPath, forKey: "index")
         
         return cell
     }

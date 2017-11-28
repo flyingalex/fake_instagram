@@ -248,6 +248,9 @@ static BOOL AVIMClientHasInstantiated = NO;
 }
 
 - (AVIMConversation *)conversationForId:(NSString *)conversationId {
+    if (!conversationId)
+        return nil;
+
     AVIMConversation *conversation = [_conversations objectForKey:conversationId];
 
     /* Disable conversation cache for consistent */
@@ -842,7 +845,12 @@ static BOOL AVIMClientHasInstantiated = NO;
         }];
 
         AVIMSessionCommand *sessionCommand = [[AVIMSessionCommand alloc] init];
-        sessionCommand.sessionPeerIdsArray = clients ?: @[];
+        
+        NSMutableArray<NSString *> *sessionPeerIdsArray = [NSMutableArray new];
+        if (clients) {
+            [sessionPeerIdsArray addObjectsFromArray:clients];
+        }
+        sessionCommand.sessionPeerIdsArray = sessionPeerIdsArray;
 
         [genericCommand avim_addRequiredKeyWithCommand:sessionCommand];
 
@@ -1060,8 +1068,13 @@ static BOOL AVIMClientHasInstantiated = NO;
         [self updateConversation:conversationId withDictionary:dictionary];
 
         /* For compatibility, we reserve this callback. It should be removed in future. */
-        if ([self.delegate respondsToSelector:@selector(conversation:didReceiveUnread:)])
+        SEL selector = @selector(conversation:didReceiveUnread:);
+        if ([self.delegate respondsToSelector:selector]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
             [self.delegate conversation:conversation didReceiveUnread:unreadTuple.unread];
+#pragma clang diagnostic pop
+        }
     }];
 }
 
@@ -1072,7 +1085,7 @@ static BOOL AVIMClientHasInstantiated = NO;
 }
 
 - (void)resetUnreadMessagesCountForConversation:(AVIMConversation *)conversation {
-    [self updateConversation:conversation withDictionary:@{@"unreadMessagesCount": @(0)}];
+    [self updateConversation:conversation.conversationId withDictionary:@{@"unreadMessagesCount": @(0)}];
 }
 
 - (void)removeCachedConversationForId:(NSString *)conversationId {
@@ -1480,9 +1493,11 @@ static BOOL AVIMClientHasInstantiated = NO;
 }
 
 + (void)setUnreadNotificationEnabled:(BOOL)enabled {
-    [self setUserOptions:@{
-        AVIMUserOptionUseUnread: @(enabled)
-    }];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    NSDictionary *options = @{ AVIMUserOptionUseUnread : @(enabled) };
+    [self setUserOptions:options];
+#pragma clang diagnostic pop
 }
 
 @end
