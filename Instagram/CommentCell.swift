@@ -24,7 +24,7 @@ class CommentCell: UITableViewCell {
         
         // 约束
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-10-[username]-(-2)-[comment)]-5-", options: [], metrics: nil, views: ["username": usernameBtn, "comment": commentLbl]))
+            withVisualFormat: "V:|-10-[username]-(-2)-[comment]-5-|", options: [], metrics: nil, views: ["username": usernameBtn, "comment": commentLbl]))
         
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:|-15-[date]", options: [], metrics: nil, views: ["date": dateLbl]))
@@ -33,7 +33,7 @@ class CommentCell: UITableViewCell {
             withVisualFormat: "V:|-10-[ava(40)]", options: [], metrics: nil, views: ["ava": avaImg]))
         
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-10-[ava(40)]-13-[comment]-20-", options: [], metrics: nil, views: ["ava": avaImg, "comment": commentLbl]))
+            withVisualFormat: "H:|-10-[ava(40)]-13-[comment]-20-|", options: [], metrics: nil, views: ["ava": avaImg, "comment": commentLbl]))
         
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-10-[ava(30)]-10-[username]", options: [], metrics: nil, views: ["ava": avaImg, "username": usernameBtn]))
