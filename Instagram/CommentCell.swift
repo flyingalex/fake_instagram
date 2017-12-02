@@ -12,7 +12,7 @@ class CommentCell: UITableViewCell {
 
     @IBOutlet weak var avaImg: UIImageView!
     @IBOutlet weak var usernameBtn: UIButton!
-    @IBOutlet weak var commentLbl: UILabel!
+    @IBOutlet weak var commentLbl: KILabel!
     @IBOutlet weak var dateLbl: UILabel!
     
     override func awakeFromNib() {

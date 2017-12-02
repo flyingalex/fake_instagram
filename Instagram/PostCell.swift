@@ -24,7 +24,7 @@ class PostCell: UITableViewCell {
     
     // Labels
     @IBOutlet weak var likeLbl: UILabel!
-    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var titleLbl: KILabel!
     @IBOutlet weak var puuidLbl: UILabel!
     
     @IBAction func likeBtn_clicked(_ sender: AnyObject) {

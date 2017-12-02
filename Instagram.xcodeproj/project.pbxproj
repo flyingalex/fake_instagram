@@ -18,6 +18,7 @@
 		197B16631F89D3D50099240C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 197B16611F89D3D50099240C /* Main.storyboard */; };
 		197B16681F89D3D50099240C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 197B16661F89D3D50099240C /* LaunchScreen.storyboard */; };
 		197B16701F89D3F50099240C /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 197B166F1F89D3F50099240C /* Podfile */; };
+		1981D1BE1FD2483A00B27443 /* KILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1981D1BD1FD2483A00B27443 /* KILabel.m */; };
 		1986A48F1F9C20590026D4D1 /* PostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1986A48E1F9C20590026D4D1 /* PostVC.swift */; };
 		1986A4911F9C22D60026D4D1 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1986A4901F9C22D60026D4D1 /* PostCell.swift */; };
 		1986A4931F9C44AB0026D4D1 /* NavVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1986A4921F9C44AB0026D4D1 /* NavVC.swift */; };
@@ -48,6 +49,8 @@
 		197B16691F89D3D50099240C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		197B166F1F89D3F50099240C /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		197B16711F89D4720099240C /* Instagram-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Instagram-Bridging-Header.h"; sourceTree = "<group>"; };
+		1981D1BC1FD2483A00B27443 /* KILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KILabel.h; sourceTree = "<group>"; };
+		1981D1BD1FD2483A00B27443 /* KILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KILabel.m; sourceTree = "<group>"; };
 		1986A48E1F9C20590026D4D1 /* PostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVC.swift; sourceTree = "<group>"; };
 		1986A4901F9C22D60026D4D1 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		1986A4921F9C44AB0026D4D1 /* NavVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavVC.swift; sourceTree = "<group>"; };
@@ -99,6 +102,7 @@
 		197B165C1F89D3D50099240C /* Instagram */ = {
 			isa = PBXGroup;
 			children = (
+				1981D1BB1FD2481F00B27443 /* vendors */,
 				1986A4961F9C5D9F0026D4D1 /* Assets.xcassets */,
 				1996E7191F8BC2FC00B454BF /* Pacifico-Regular.ttf */,
 				197B165D1F89D3D50099240C /* AppDelegate.swift */,
@@ -125,6 +129,15 @@
 				195C3C2E1FC3A0E100E71694 /* CommentCell.swift */,
 			);
 			path = Instagram;
+			sourceTree = "<group>";
+		};
+		1981D1BB1FD2481F00B27443 /* vendors */ = {
+			isa = PBXGroup;
+			children = (
+				1981D1BC1FD2483A00B27443 /* KILabel.h */,
+				1981D1BD1FD2483A00B27443 /* KILabel.m */,
+			);
+			path = vendors;
 			sourceTree = "<group>";
 		};
 		40BF92249DCA0CE83B356B26 /* Pods */ = {
@@ -293,6 +306,7 @@
 				19C1AC751FC250AB0099E7A0 /* CommentVC.swift in Sources */,
 				1928E3181F89D9A4004D8368 /* SignInVC.swift in Sources */,
 				192D45C01F98DC9F00C1F230 /* UploadVC.swift in Sources */,
+				1981D1BE1FD2483A00B27443 /* KILabel.m in Sources */,
 				1996E7261F8E6CDF00B454BF /* FollowersCell.swift in Sources */,
 				1996E7221F8C41B100B454BF /* PictureCell.swift in Sources */,
 				1928E31C1F89D9F4004D8368 /* ResetPasswordVC.swift in Sources */,
@@ -436,6 +450,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E4VXK7FT25;
 				INFOPLIST_FILE = Instagram/Info.plist;
@@ -443,6 +458,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = hulin.Instagram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Instagram/Instagram-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -456,6 +472,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E4VXK7FT25;
 				INFOPLIST_FILE = Instagram/Info.plist;
@@ -463,6 +480,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = hulin.Instagram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Instagram/Instagram-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

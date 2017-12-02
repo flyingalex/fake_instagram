@@ -103,6 +103,40 @@ class CommentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
         commentObj["comment"] = commentTxt.text.trimmingCharacters(in: .whitespacesAndNewlines)
         commentObj.saveEventually()
         
+        // STEP 3. 发送hashtag到云端
+        let words: [String] = commentTxt.text.components(separatedBy: CharacterSet.whitespacesAndNewlines)
+        
+        for var word in words {
+            //定义正则表达式
+            let pattern = "#[^#]+";
+            let regular = try! NSRegularExpression(pattern: pattern, options:.caseInsensitive)
+            let results = regular.matches(in: word, options: .reportProgress , range: NSMakeRange(0, word.characters.count))
+            
+            //输出截取结果
+            print("符合的结果有\(results.count)个")
+            for result in results {
+                word = (word as NSString).substring(with: result.range)
+            }
+            
+            if word.hasPrefix("#") {
+                word = word.trimmingCharacters(in: CharacterSet.punctuationCharacters)
+                word = word.trimmingCharacters(in: CharacterSet.symbols)
+                
+                let hashtagObj = AVObject(className: "Hashtags")
+                hashtagObj["to"] = commentuuid.last
+                hashtagObj["by"] = AVUser.current()?.username
+                hashtagObj["hashtag"] = word.lowercased()
+                hashtagObj["comment"] = commentTxt.text
+                hashtagObj.saveInBackground({ (success:Bool, error:Error?) in
+                    if success {
+                        print("hashtag \(word) 已经被创建。")
+                    }else {
+                        print(error?.localizedDescription)
+                    }
+                })
+            }
+        }
+        
         // scroll to bottom
         self.tableView.scrollToRow(at: IndexPath(item: commentArray.count - 1, section: 0), at: .bottom, animated: false)
         
@@ -160,6 +194,29 @@ class CommentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
             cell.dateLbl.text = "\(difference.weekOfMonth!)周."
         }
         
+        cell.commentLbl.userHandleLinkTapHandler = { label, handle, rang in
+            
+            var mention = handle
+            mention = String(mention.characters.dropFirst())
+            
+            if mention.lowercased() == AVUser.current()?.username {
+                let home = self.storyboard?.instantiateViewController(withIdentifier: "HomeVC") as! HomeVC
+                self.navigationController?.pushViewController(home, animated: true)
+            }else {
+                let query = AVUser.query()
+                query.whereKey("username", equalTo: mention.lowercased())
+                query.findObjectsInBackground({ (objects:[Any]?, error:Error?) in
+                    if let object = objects?.last {
+                        guestArray.append(object as! AVUser)
+                        
+                        let guest = self.storyboard?.instantiateViewController(withIdentifier: "GuestVC") as! GuestVC
+                        self.navigationController?.pushViewController(guest, animated: true)
+                    }
+                })
+            }
+        }
+        
+        
         cell.usernameBtn.layer.setValue(indexPath, forKey: "index")
         return cell
     }
@@ -173,7 +230,7 @@ class CommentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
         let cell = tableView.cellForRow(at: indexPath) as! CommentCell
         
         // Action 1. Delete
-        let delete = UITableViewRowAction(style: .normal, title: ""){(action: UITableViewRowAction, IndexPath) -> Void in
+        let delete = UITableViewRowAction(style: .destructive, title: ""){(action: UITableViewRowAction, IndexPath) -> Void in
             // STEP 1. 从云端删除评论
             let commentQuery = AVQuery(className: "Comments")
             commentQuery.whereKey("to", equalTo: commentuuid.last!)
@@ -189,7 +246,20 @@ class CommentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
                 }
             })
             
-            // STEP 2. 从表格视图删除单元格
+            // STEP 2. 从云端删除 hashtag
+            let hashtagQuery = AVQuery(className: "Hashtags")
+            hashtagQuery.whereKey("to", equalTo: commentuuid.last)
+            hashtagQuery.whereKey("by", equalTo: cell.usernameBtn.titleLabel?.text)
+            hashtagQuery.whereKey("comment", equalTo: cell.commentLbl.text)
+            hashtagQuery.findObjectsInBackground({ (objects:[Any]?, error:Error?) in
+                if error == nil {
+                    for object in objects! {
+                        (object as AnyObject).deleteEventually()
+                    }
+                }
+            })
+            
+            // STEP 3. 从表格视图删除单元格
             self.commentArray.remove(at: indexPath.row)
             self.dateArray.remove(at: indexPath.row)
             self.avaArray.remove(at: indexPath.row)
@@ -202,7 +272,7 @@ class CommentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
         }
         
         // Action 2. Address
-        let address = UITableViewRowAction(style: .normal, title: "") {(action:UITableViewRowAction, indexPath: IndexPath) -> Void in
+        let address = UITableViewRowAction(style: .destructive, title: "") {(action:UITableViewRowAction, indexPath: IndexPath) -> Void in
             
             // 在Text View中包含Address
             self.commentTxt.text = "\(self.commentTxt.text + "@" + self.usernameArray[indexPath.row] + " ")"
@@ -213,7 +283,7 @@ class CommentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
         }
         
         // Action 3. 投诉评论
-        let complain = UITableViewRowAction(style: .normal, title: ""){(action: UITableViewRowAction, indexPath: IndexPath) -> Void in
+        let complain = UITableViewRowAction(style: .normal, title: "    "){(action: UITableViewRowAction, indexPath: IndexPath) -> Void in
             
             // 发送投诉到云端
             let complainObj = AVObject(className: "Complain")

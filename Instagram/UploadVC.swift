@@ -27,7 +27,8 @@ class UploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         let object = AVObject(className: "Posts")
         object["username"] = AVUser.current()?.username
         object["ava"] = AVUser.current()?.value(forKey: "ava") as! AVFile
-        object["puuid"] = "\(AVUser.current()?.username!) \(NSUUID().uuidString)"
+        let uuid = NSUUID().uuidString
+        object["puuid"] = "\(AVUser.current()?.username!) \(uuid)"
         
         //titleTxt 是否为空
         if titleTxt.text.isEmpty {
@@ -39,6 +40,40 @@ class UploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         let imageData = UIImageJPEGRepresentation(picImg.image!, 0.5)
         let imageFile = AVFile(name: "post.jpg", data: imageData!)
         object["pic"] = imageFile
+        
+        // STEP 3. 发送hashtag到云端
+        let words: [String] = titleTxt.text.components(separatedBy: CharacterSet.whitespacesAndNewlines)
+        
+        for var word in words {
+            //定义正则表达式
+            let pattern = "#[^#]+";
+            let regular = try! NSRegularExpression(pattern: pattern, options:.caseInsensitive)
+            let results = regular.matches(in: word, options: .reportProgress , range: NSMakeRange(0, word.characters.count))
+            
+            //输出截取结果
+            print("符合的结果有\(results.count)个")
+            for result in results {
+                word = (word as NSString).substring(with: result.range)
+            }
+            
+            if word.hasPrefix("#") {
+                word = word.trimmingCharacters(in: CharacterSet.punctuationCharacters)
+                word = word.trimmingCharacters(in: CharacterSet.symbols)
+                
+                let hashtagObj = AVObject(className: "Hashtags")
+                hashtagObj["to"] = "\(AVUser.current()?.username!) \(uuid)"
+                hashtagObj["by"] = AVUser.current()?.username
+                hashtagObj["hashtag"] = word.lowercased()
+                hashtagObj["comment"] = commentTxt.text
+                hashtagObj.saveInBackground({ (success:Bool, error:Error?) in
+                    if success {
+                        print("hashtag \(word) 已经被创建。")
+                    }else {
+                        print(error?.localizedDescription)
+                    }
+                })
+            }
+        }
         
         // 将最终数据存储到LeanCloud云端
         object.saveInBackground({ (success: Bool, error: Error? ) in
